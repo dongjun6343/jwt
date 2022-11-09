@@ -7,6 +7,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.web.SecurityFilterChain;
 
+/**
+ * jwt패키지에서 만들었던 5개의 클래스를 SecurityConfig에 추가할예정.
+ *
+ */
 @EnableWebSecurity
 public class SecurityConfig {
 
