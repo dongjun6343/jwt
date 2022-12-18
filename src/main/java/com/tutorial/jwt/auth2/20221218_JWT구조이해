@@ -1,0 +1,34 @@
+1. jwt 구조이해
+헤더 : 어떤알고리즘을 사용했는가?
+payload : 정보
+서명 : 헤더+payload+개인키(나만 알고있는 개인키) 를 HMAC으로 암호화시킨다.
+
+
+클라이언트 ----------------------------------------------- 서버
+
+          ------- id: dongjun pw:1234 로그인 시도 ------>   header, payload,
+                                                          signiture(header+payload+서비만 알고있는 키)
+                                                          => HMAC방식(시크릿키를 포함)으로 SHA256암호화를 한다
+          <-----------------------------------  그리고 header , payload, sign을 base64로 인코딩한 후 클라이언트에게 준다.
+
+
+          --------나의 개인정보를 줘(jwt) ---------------->   검증( jwt토큰이 유효한것인지? )
+                                                         header+payload+키를 HMAC으로 암호화 시킨 후 비교해본다.
+                                                         맞으면 payload에 있는 정보로 DB에서 select 후 개인정보를 리턴해준다.
+
+
+
+2. jwt security 설정
+세션을 사용하지 않기 때문에 STATELESS로 설정한다. (중요)
+.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
+
+
+3. jwt Bearer 인증방식
+
+Anthoriztion : ID,PW ==> HTTP Basic
+Anthoriztion : 토큰 ==> Bearer  (토큰은 유효시간을 정해준다.)
+
+HTTP Basic이 아니라 Bearer 방식을 사용할거라서 HTTP Basic을 비활성화 시켜준다.
+.httpBasic.disable()
+
