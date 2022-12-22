@@ -26,8 +26,12 @@ payload : 정보
 
 3. jwt Bearer 인증방식
 
-Anthoriztion : ID,PW ==> HTTP Basic
-Anthoriztion : 토큰 ==> Bearer  (토큰은 유효시간을 정해준다.)
+header에 Anthoriztion이라는 키값에 인증정보를 넣는다
+
+header에 Anthoriztion이라는 키값에 인증정보를 ID,PW를 넣는 방식을 HTTP Basic 방식이라고 한다.
+(문제 : ID,PW 암호화가 안되어있어서 HTTPS서버를 써서 암호화를 시킨다.)
+
+header에 Anthoriztion이라는 키값에 토큰을 넣는 방식을 Bearer 방식이라고 한다. (토큰은 유효시간을 정해준다.)
 
 HTTP Basic이 아니라 Bearer 방식을 사용할거라서 HTTP Basic을 비활성화 시켜준다.
 .httpBasic.disable()

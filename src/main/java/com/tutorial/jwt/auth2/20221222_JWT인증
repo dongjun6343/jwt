@@ -1,0 +1,30 @@
+1.인증
+
+POSTMAN에서 Header에 Authorization 값에 cos를 넣어놓고 테스트를 한다. (cos라는 값을 토큰값으로 변경해주면 된다.)
+
+HttpServletRequest req = (HttpServletRequest) request;
+HttpServletResponse res = (HttpServletResponse) response;
+
+if(req.getMethod().equals("POST")) {
+    String headerAuth = req.getHeader("Authorization");
+
+    if(headerAuth.equals("cos")){  // postman에서 Authorization에 cos라는 값을 넣어놨기 때문에 true.
+        ~~~
+        ~~~
+        ~~~
+    }
+}
+
+
+ID,PW가 정상적으로 들어와서 로그인이 완료되면 토큰을 만들어주고 그것을 응답해준다.
+요청할때마다 req.getHeader("Authorization"); 즉, Header에 Authorization의 value값으로 토큰을 가져올것이다.
+그떄 토큰이 넘어오면 이 토큰이 내가 만들어준 토큰이 맞는지 검증만 해주면 된다.
+
+
+
+2. 필터
+
+스프링 시큐리티에서 UsernamePasswordAuthenticationFilter가 있다.
+/login 요청해서 username, password를 전송하면(post)
+UsernamePasswordAuthenticationFilter가 동작을 하게 된다.
+
